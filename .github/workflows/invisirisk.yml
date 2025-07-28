@@ -1,4 +1,4 @@
-ame: GO build
+name: GO build
 
 on:
   workflow_dispatch:
@@ -30,8 +30,16 @@ jobs:
         with:
           cleanup: "true"
           
-      - name: Gather Job status
-        if: always()
-        uses: invisirisk/pse-action@latest
-        with:
-          get_jobs: "true"
+  gather_analytics:
+     runs-on: ubuntu-latest
+     name: Gather Analytics
+     needs: test
+     if: always()
+     steps:
+     - name: Gather Status
+       uses: invisirisk/pse-action@latest
+       with:
+        api_url: "https://app.stage.invisirisk.com"
+        app_token: ${{ secrets.IR_API_KEY_NA_STAGE }}
+        send_job_status: "true"
+        debug: "true"
