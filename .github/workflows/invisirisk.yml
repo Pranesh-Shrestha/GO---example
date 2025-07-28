@@ -40,6 +40,6 @@ jobs:
        uses: invisirisk/pse-action@latest
        with:
         api_url: "https://app.stage.invisirisk.com"
-        app_token: ${{ secrets.IR_API_KEY_NA_STAGE }}
+        app_token: ${{ secrets.IR_API_KEY_STAGE }}
         send_job_status: "true"
         debug: "true"
