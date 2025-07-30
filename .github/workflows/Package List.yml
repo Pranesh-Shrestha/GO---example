@@ -1,0 +1,23 @@
+name: Go Build and List Packages
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.21'  # Set your desired Go version
+
+    - name: Build project
+      run: go build ./...
+
+    - name: List installed packages
+      run: go list -m all
